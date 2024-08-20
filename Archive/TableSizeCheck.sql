@@ -1,9 +1,9 @@
-SELECT TOP 10 
+SELECT TOP 100 
     t.NAME AS TableName,
     p.rows AS RowCounts,
-    SUM(a.total_pages) * 8 / 1024 AS TotalSpaceMB,
-    SUM(a.used_pages) * 8 / 1024 AS UsedSpaceMB,
-    (SUM(a.total_pages) - SUM(a.used_pages)) * 8 / 1024 AS UnusedSpaceMB
+    SUM(a.total_pages) * 8 / 1024 / 1024 AS TotalSpaceGB,
+    SUM(a.used_pages) * 8 / 1024 / 1024 AS UsedSpaceGB,
+    (SUM(a.total_pages) - SUM(a.used_pages)) * 8 / 1024 / 1024 AS UnusedSpaceGB
 FROM 
     sys.tables t
 INNER JOIN      
@@ -19,4 +19,4 @@ WHERE
 GROUP BY 
     t.NAME, p.Rows
 ORDER BY 
-    TotalSpaceMB DESC;
+    TotalSpaceGB DESC;
