@@ -32,7 +32,7 @@ BEGIN TRY
         -- 注意：使用 NOLOCK 可能會讀取到未提交的數據，可能導致不一致的結果
         WITH CTE AS (
             SELECT TOP (@BatchSize) *
-            FROM MX WITH (NOLOCK)
+            FROM [BSADBTW].[dbo].[SwiftMX_DetectionResult_NotHit] WITH (NOLOCK)
             WHERE UpdatedDate < @RetainDate
             ORDER BY UpdatedDate
         )
