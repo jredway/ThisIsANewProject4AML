@@ -33,7 +33,7 @@ BEGIN TRY
         -- 使用公用資料表運算式（CTE）來選擇要刪除的記錄
         WITH CTE AS (
             SELECT TOP (@BatchSize) *
-            FROM MX WITH (NOLOCK)
+            FROM [BSADBTW].[dbo].[SwiftMX_DetectionResult_NotHit] WITH (NOLOCK)
             WHERE UpdatedDate < @RetainDate
             ORDER BY UpdatedDate
         )
